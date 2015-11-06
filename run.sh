@@ -1,8 +1,8 @@
 #! /bin/bash
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+RED="$(tput setaf 1 2>/dev/null || :)"
+GREEN="$(tput setaf 2 2>/dev/null || :)"
+BLUE="$(tput setaf 4 2>/dev/null || :)"
+NC="$(tput sgr0 || :)"
 
 command -v ipfs >/dev/null 2>&1 || { echo -e >&2 "${RED}You need \"IPFS\" but it was not found.${NC}  Aborting..."; exit 1; }
 command -v wget >/dev/null 2>&1 || { echo -e >&2 "${RED}You need \"wget\" but it was not found.${NC}  Aborting..."; exit 1; }

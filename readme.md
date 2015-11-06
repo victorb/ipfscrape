@@ -1,5 +1,7 @@
 ## IPFScrape
 
+![GIF of usage](preview.gif)
+
 Takes a URL (webpage), downloads all the contents (css, images, scripts needed) for a page and dumps it into IPFS, providing you with a public link and a local link. Use for making quick copies of websites or permanent copies that you can send to friends.
 
 Quick tool I wrote during the first Open Source Day at Typeform.

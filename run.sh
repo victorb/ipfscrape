@@ -2,7 +2,7 @@
 RED="$(tput setaf 1 2>/dev/null || :)"
 GREEN="$(tput setaf 2 2>/dev/null || :)"
 BLUE="$(tput setaf 4 2>/dev/null || :)"
-NC="$(tput sgr0 || :)"
+NC="$(tput sgr0 2>/dev/null || :)"
 
 command -v ipfs >/dev/null 2>&1 || { echo -e >&2 "${RED}You need \"IPFS\" but it was not found.${NC}  Aborting..."; exit 1; }
 command -v wget >/dev/null 2>&1 || { echo -e >&2 "${RED}You need \"wget\" but it was not found.${NC}  Aborting..."; exit 1; }

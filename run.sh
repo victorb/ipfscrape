@@ -1,4 +1,5 @@
-#! /bin/bash
+#! /usr/bin/env bash
+
 RED="$(tput setaf 1 2>/dev/null || :)"
 GREEN="$(tput setaf 2 2>/dev/null || :)"
 BLUE="$(tput setaf 4 2>/dev/null || :)"
@@ -26,14 +27,18 @@ mkdir -p /tmp/ipfscrape/site
 cd /tmp/ipfscrape/site
 wget -q --show-progress --page-requisites --html-extension --convert-links --random-wait -e robots=off -nd --span-hosts $URL || true
 
-INDEX_FILE=$(ls -S | grep -i html | head -n1)
+test -f index.html || {
+INDEX_FILE=$(ls -S | grep -i .html | head -n1)
 
 echo "Moving $INDEX_FILE to index.html"
 mv /tmp/ipfscrape/site/$INDEX_FILE /tmp/ipfscrape/site/index.html
+}
 
 ipfs add -r . > ipfs_log
 
 HASH=$(tail -n 1 ipfs_log | cut -d ' ' -f 2)
+
+[ "$HASH" = "" ] && echo -e "${RED}Didn't add anything to IPFS...?! :'( ${NC} Aborting..." && exit 1
 
 echo -e "${NC}"
 echo "###############"

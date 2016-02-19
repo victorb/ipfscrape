@@ -25,7 +25,7 @@ echo -e "${GREEN}Dumping \"$URL\" into IPFS${NC}"
 echo -e "${BLUE}"
 mkdir -p /tmp/ipfscrape/site
 cd /tmp/ipfscrape/site
-wget -q --show-progress --page-requisites --html-extension --convert-links --random-wait -e robots=off -nd --span-hosts $URL || true
+wget -q --page-requisites --html-extension --convert-links --random-wait -e robots=off -nd --span-hosts $URL || true
 
 test -f index.html || {
 INDEX_FILE=$(ls -S | grep -i .html | head -n1)
